@@ -82,7 +82,7 @@ export default function TeamSection() {
               
               <div className="relative h-full flex flex-col p-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 hover:border-blue-500/50 rounded-2xl transition-all duration-300">
                 
-                {/* Header: Emoji/Image & Links */}
+
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-3xl border border-blue-500/30">
                     {speaker.emoji}
@@ -93,7 +93,7 @@ export default function TeamSection() {
                   </div>
                 </div>
 
-                {/* Content */}
+
                 <div className="flex-grow">
                   <h3 className="text-xl font-bold text-white mb-2">{speaker.name}</h3>
                   <div className="text-blue-400 text-sm font-semibold mb-4">{speaker.role}</div>

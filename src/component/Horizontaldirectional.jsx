@@ -14,14 +14,14 @@ export default function HorizontalScroll() {
     if (!scrollContainerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Calculate total scrollable width: scrollWidth - clientWidth (visible width)
+
       const scrollWidth = scrollContainerRef.current.scrollWidth - scrollContainerRef.current.offsetWidth;
 
       gsap.to(scrollContainerRef.current, {
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'center center',
-          end: `+=${scrollWidth + 1000}`, // Add some padding to scroll duration
+          end: `+=${scrollWidth + 1000}`, 
           scrub: 1,
           pin: true,
           markers: false

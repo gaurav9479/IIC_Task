@@ -9,7 +9,7 @@ export default function FlipCardSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Reveal animation
+
       gsap.from('.flip-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -26,7 +26,7 @@ export default function FlipCardSection() {
         ease: 'power2.inOut'
       });
 
-      // Hover flip animation
+
       const cards = gsap.utils.toArray('.flip-card-inner');
       cards.forEach((card) => {
         card.addEventListener('mouseenter', () => {
@@ -37,7 +37,7 @@ export default function FlipCardSection() {
         });
       });
 
-      // Continuous glow animation
+
       gsap.to('.flip-card-glow', {
         boxShadow: [
           '0 0 20px rgba(59, 130, 246, 0.5)',

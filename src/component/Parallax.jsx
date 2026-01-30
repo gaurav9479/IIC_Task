@@ -22,7 +22,7 @@ export default function ParallaxSection() {
         ease: 'power3.out'
       });
 
-      // Layer 2
+
       gsap.from('.layer-2', {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -36,7 +36,7 @@ export default function ParallaxSection() {
         ease: 'power3.out'
       });
 
-      // Layer 3 - Fastest
+
       gsap.from('.layer-3', {
         scrollTrigger: {
           trigger: sectionRef.current,

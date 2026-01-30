@@ -29,7 +29,7 @@ export default function Navigation() {
         stagger: 0.1,
         duration: 0.6,
         ease: "power2.out",
-        clearProps: "all", // 🔥 CRITICAL
+        clearProps: "all", 
       });
     }, navRef);
 

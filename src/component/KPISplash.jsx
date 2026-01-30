@@ -17,7 +17,7 @@ export default function KPISplash() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Floating animation for each card with random parameters
+
       cards.forEach((_, i) => {
         gsap.to(`.splash-card-${i}`, {
           y: 'random(-20, 20)',
@@ -31,7 +31,7 @@ export default function KPISplash() {
         });
       });
 
-      // Initial "Splash" entry
+
       gsap.from('.splash-card', {
         y: 100,
         opacity: 0,
@@ -44,14 +44,14 @@ export default function KPISplash() {
     return () => ctx.revert();
   }, []);
 
-  // Positions for the floating cards (scattered around)
+
   const positions = [
     { top: '10%', left: '10%' },
     { top: '20%', right: '15%' },
     { bottom: '15%', left: '15%' },
-    { top: '50%', right: '10%' }, // text
+    { top: '50%', right: '10%' }, 
     { bottom: '30%', right: '20%' },
-    { top: '15%', left: '40%' }, // text
+    { top: '15%', left: '40%' }, 
     { bottom: '10%', left: '50%' },
   ];
 
@@ -82,7 +82,7 @@ export default function KPISplash() {
               </p>
             )}
             
-            {/* Glow effect */}
+
             <div className={`absolute inset-0 rounded-xl opacity-20 blur-lg ${card.bg.replace('border', 'bg').replace('/30', '/50')}`}></div>
           </div>
         );

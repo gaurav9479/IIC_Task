@@ -9,7 +9,7 @@ export default function MultiDirectional() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Left to right
+
       gsap.from('.slide-right', {
         scrollTrigger: { 
           trigger: sectionRef.current, 
@@ -25,7 +25,7 @@ export default function MultiDirectional() {
         ease: 'power2.inOut'
       });
 
-      // Right to left
+
       gsap.from('.slide-left', {
         scrollTrigger: { 
           trigger: sectionRef.current, 
@@ -42,7 +42,7 @@ export default function MultiDirectional() {
         ease: 'power2.inOut'
       });
 
-      // Bottom to top
+
       gsap.from('.slide-up', {
         scrollTrigger: { 
           trigger: sectionRef.current, 
@@ -59,7 +59,7 @@ export default function MultiDirectional() {
         ease: 'power2.inOut'
       });
 
-      // Rotate and scale
+
       gsap.from('.rotate-in', {
         scrollTrigger: { 
           trigger: sectionRef.current, 

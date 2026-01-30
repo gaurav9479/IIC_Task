@@ -49,14 +49,14 @@ export default function CustomCursor() {
 
     window.addEventListener('mousemove', moveCursor);
 
-    // Add listeners to all interactive elements
+
     const interactiveElements = document.querySelectorAll('a, button, .interactive');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleHoverStart);
       el.addEventListener('mouseleave', handleHoverEnd);
     });
 
-    // Observer to attach listeners to dynamic elements
+
     const observer = new MutationObserver((mutations) => {
       const newInteractiveElements = document.querySelectorAll('a, button, .interactive');
       newInteractiveElements.forEach(el => {

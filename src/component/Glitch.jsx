@@ -10,7 +10,7 @@ export default function GlitchSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title glitch animation
+
       gsap.from('.glitch-char', {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -26,7 +26,7 @@ export default function GlitchSection() {
         ease: 'power2.inOut'
       });
 
-      // Feature cards animation
+
       gsap.from('.glitch-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -41,7 +41,7 @@ export default function GlitchSection() {
         ease: 'power2.inOut'
       });
 
-      // Continuous glitch pulse on cards
+
       gsap.to('.glitch-pulse', {
         boxShadow: [
           '0 0 10px rgba(34, 211, 238, 0.5)',
@@ -66,7 +66,7 @@ export default function GlitchSection() {
 
   return (
     <section ref={sectionRef} className="w-full relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
-      {/* Background effects */}
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
@@ -88,7 +88,7 @@ export default function GlitchSection() {
           <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto rounded-full"></div>
         </div>
 
-        {/* Feature Grid */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
           {features.map((feature, i) => {
             const Icon = feature.icon;
