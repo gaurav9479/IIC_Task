@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Navigation from './component/Navigation';
+import AdvancedHero from './component/Hero';
+import MultiDirectional from './component/Multidirectional';
+import HorizontalScroll from './component/Horizontaldirectional';
+import StaggeredReveal from './component/Staggered';
+import WhyIIC from './component/WhyIIC';
+import FocusAreas from './component/FocusAreas';
+import GlitchSection from './component/Glitch';
+import FlipCardSection from './component/FlipCard';
+import Functions from './component/Functions';
+import StatsShowcase from './component/StatsShowcase';
+import Opportunities from './component/Opportunities';
+import About from './component/About';
+import InnovationShowcase from './component/InnovationShowcase';
+import Schedule from './component/Schedule';
+import TextRevealSection from './component/TextReveal';
+import ParallexSection from './component/Parallax';
+import TestimonialSection from './component/TestimonialSection';
+import TeamSection from './component/TeamSection';
+import FAQSection from './component/FAQSection';
+import CTA from './component/CTA';
+import Footer from './component/Footer';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-black text-white overflow-hidden">
+      <div className="w-full mx-auto">
+        <Navigation />
+        <AdvancedHero />
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <WhyIIC />
+          <FocusAreas />
+          <MultiDirectional />
+          <HorizontalScroll />
+          <StaggeredReveal />
+          <GlitchSection />
+          <FlipCardSection />
+          <Functions />
+          <StatsShowcase />
+          <Opportunities />
+          <About />
+          <InnovationShowcase />
+          <TextRevealSection />
+          <ParallexSection />
+          <Schedule />
+          <TestimonialSection />
+          <TeamSection />
+          <FAQSection />
+        </div>
+        <CTA />
+        <Footer/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
-
-export default App
