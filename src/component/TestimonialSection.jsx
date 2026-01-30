@@ -34,13 +34,12 @@ export default function TestimonialSection() {
       gsap.from('.testimonial-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 95%',
-          end: 'top 20%',
-          scrub: 1.5,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
           markers: false
         },
-        opacity: 0,
-        y: 100,
+        y: 50,
         stagger: 0.2,
         duration: 2,
         ease: 'power2.inOut'
@@ -54,8 +53,7 @@ export default function TestimonialSection() {
           scrub: 1.5,
           markers: false
         },
-        opacity: 0,
-        x: -100,
+        x: -50,
         duration: 1.5,
         ease: 'power2.inOut'
       });

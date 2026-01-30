@@ -2,6 +2,7 @@ import { useEffect,useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImageIcon } from 'lucide-react';
+import BackgroundEffects from './BackgroundEffects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,13 +14,14 @@ export default function HorizontalScroll() {
     if (!scrollContainerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const scrollWidth = scrollContainerRef.current.scrollWidth - window.innerWidth;
+      // Calculate total scrollable width: scrollWidth - clientWidth (visible width)
+      const scrollWidth = scrollContainerRef.current.scrollWidth - scrollContainerRef.current.offsetWidth;
 
       gsap.to(scrollContainerRef.current, {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top top',
-          end: `+=${scrollWidth}`,
+          start: 'center center',
+          end: `+=${scrollWidth + 1000}`, // Add some padding to scroll duration
           scrub: 1,
           pin: true,
           markers: false
@@ -42,8 +44,9 @@ export default function HorizontalScroll() {
   ];
 
   return (
-    <section ref={containerRef} className="w-full py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
-      <div className="max-w-5xl mx-auto mb-12">
+    <section ref={containerRef} className="w-full py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+      <BackgroundEffects />
+      <div className="max-w-5xl mx-auto mb-12 relative z-10">
         <h2 className="text-4xl sm:text-5xl font-black mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
           Tracks (Scroll Horizontally)
         </h2>

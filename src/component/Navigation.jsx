@@ -1,14 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const navRef = useRef(null);
   const linkRefs = useRef([]);
-  const mobileLinkRefs = useRef([]);
-  const mobileMenuRef = useRef(null);
-
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
     { name: "About", id: "about" },
@@ -71,35 +66,6 @@ export default function Navigation() {
             >
               {link.name}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-600 group-hover:w-full transition-all duration-300" />
-            </a>
-          ))}
-        </div>
-
-
-        <button
-          onClick={toggleMobile}
-          className="md:hidden p-2 text-gray-100 hover:bg-white/10 rounded-lg transition"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        ref={mobileMenuRef}
-        className="md:hidden overflow-hidden h-0 bg-black/95 border-t border-white/20"
-      >
-        <div className="px-4 py-4 space-y-2">
-          {links.map((link, i) => (
-            <a
-              key={link.id}
-              ref={(el) => (mobileLinkRefs.current[i] = el)}
-              href={`#${link.id}`}
-              className="block px-4 py-3 text-sm font-semibold text-gray-100 hover:text-blue-400 hover:bg-white/5 rounded-lg transition"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.name}
             </a>
           ))}
         </div>

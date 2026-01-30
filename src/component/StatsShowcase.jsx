@@ -13,14 +13,13 @@ export default function StatsShowcase() {
       gsap.from('.stat-box', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 95%',
-          end: 'top 30%',
-          scrub: 1.5,
+          start: 'top bottom-=100',
+          end: 'bottom top',
+          toggleActions: 'play none none none',
           markers: false
         },
         duration: 2,
-        opacity: 0,
-        y: 60,
+        y: 40,
         stagger: 0.15,
         ease: 'power2.inOut'
       });
@@ -55,6 +54,36 @@ export default function StatsShowcase() {
     { icon: Target, label: 'Mentors', value: '50+' }
   ];
 
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    gsap.to(card, {
+      duration: 0.5,
+      rotateX: rotateX,
+      rotateY: rotateY,
+      scale: 1.05,
+      transformPerspective: 1000,
+      ease: 'power1.out'
+    });
+  };
+
+  const handleMouseLeave = (e) => {
+    gsap.to(e.currentTarget, {
+      duration: 0.5,
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      ease: 'power1.out'
+    });
+  };
+
   return (
     <section ref={sectionRef} className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-blue-900/10 to-black">
       <div className="max-w-4xl mx-auto">
@@ -71,11 +100,13 @@ export default function StatsShowcase() {
             return (
               <div
                 key={i}
-                className="stat-box group relative bg-gradient-to-br from-gray-900/50 to-black border border-pink-500/20 hover:border-pink-500/50 rounded-xl p-6 sm:p-8 text-center transition-all"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="stat-box group relative bg-gradient-to-br from-gray-900/50 to-black border border-pink-500/20 hover:border-pink-500/50 rounded-xl p-6 sm:p-8 text-center transition-all interactive"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-600 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity blur-xl"></div>
                 
-                <div className="relative z-10">
+                <div className="relative z-10 pointer-events-none">
                   <div className="inline-block p-3 bg-pink-500/20 rounded-lg mb-4">
                     <Icon className="text-pink-400" size={28} />
                   </div>

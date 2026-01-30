@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Lightbulb, Code, Zap, Users } from 'lucide-react';
+import BackgroundEffects from './BackgroundEffects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,14 +15,13 @@ export default function InnovationShowcase() {
       gsap.from('.innovation-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 95%',
-          end: 'top 30%',
-          scrub: 1.5,
+          start: 'top bottom-=100',
+          end: 'bottom top',
+          toggleActions: 'play none none none',
           markers: false
         },
         duration: 2,
-        opacity: 0,
-        y: 60,
+        y: 40,
         rotation: -3,
         stagger: 0.15,
         ease: 'power2.inOut'
@@ -44,35 +44,36 @@ export default function InnovationShowcase() {
   const innovations = [
     {
       icon: Lightbulb,
-      title: 'Ideation',
-      description: 'Transform your ideas into innovative solutions through collaborative brainstorming'
+      title: 'Knowledge Sharing',
+      description: 'Arrange lectures & presentations from industry experts and organize seminars to share research interest'
     },
     {
       icon: Code,
-      title: 'Development',
-      description: 'Build cutting-edge projects with mentorship from industry experts'
+      title: 'Industry Projects',
+      description: 'Facilitate industry-sponsored M.Tech/PhD projects and establish industry-named Labs'
     },
     {
       icon: Zap,
-      title: 'Innovation',
-      description: 'Showcase breakthrough technologies and creative implementations'
+      title: 'Research & Consultancy',
+      description: 'Drive research collaborations with industry and provide consultancy services from faculty members'
     },
     {
       icon: Users,
-      title: 'Collaboration',
-      description: 'Connect with talented developers and innovators from across the institute'
+      title: 'Industry Exposure',
+      description: 'Organize industry visits and tours for faculty and students to bridge the gap between academia and industry'
     }
   ];
 
   return (
-    <section ref={sectionRef} className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-black">
-      <div className="max-w-4xl mx-auto">
+    <section ref={sectionRef} className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+      <BackgroundEffects />
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-4xl sm:text-5xl font-black mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-            Institute Innovation Council
+            Functions of IIC
           </h2>
           <p className="text-gray-400 text-sm sm:text-lg max-w-2xl mx-auto">
-            Empowering students to build tomorrow's technology today
+            What we do to foster innovation
           </p>
         </div>
 
@@ -104,10 +105,37 @@ export default function InnovationShowcase() {
           })}
         </div>
 
-        <div className="mt-12 sm:mt-16 text-center">
-          <p className="text-gray-400 text-sm sm:text-base">
-            Join us in shaping the future of innovation at our institute
-          </p>
+        <div className="mt-20 sm:mt-24">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl sm:text-4xl font-black mb-4 bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
+              Opportunities for You
+            </h3>
+            <p className="text-gray-400 text-sm sm:text-base">
+              Multiple ways to showcase your innovation and get recognized
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 hover:border-green-500/50 transition-all group">
+              <div className="text-green-400 font-bold text-xl mb-2">Idea Competitions</div>
+              <p className="text-gray-400 text-sm mb-4">Pitch your groundbreaking ideas and win prizes</p>
+              <div className="inline-block px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-xs font-semibold border border-green-500/20">
+                Monthly contests
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 hover:border-purple-500/50 transition-all group">
+              <div className="text-purple-400 font-bold text-xl mb-2">Hackathons</div>
+              <p className="text-gray-400 text-sm mb-4">24-48 hour coding marathons with mentorship</p>
+              <div className="inline-block px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs font-semibold border border-purple-500/20">
+                2+ per year
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-16 text-center">
+            <p className="text-xl text-gray-300 font-medium">Building a thriving innovation community</p>
+          </div>
         </div>
       </div>
     </section>

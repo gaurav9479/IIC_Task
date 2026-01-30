@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import KPISplash from './KPISplash';
 import { ChevronDown } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,11 +12,11 @@ export default function AdvancedHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.hero-title span', {
+      gsap.from('.hero-char', {
         opacity: 0,
         y: 100,
         rotation: 10,
-        stagger: 0.1,
+        stagger: 0.05,
         duration: 1,
         ease: 'power3.out'
       });
@@ -38,6 +39,7 @@ export default function AdvancedHero() {
 
   return (
     <section ref={heroRef} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-32 sm:pt-40 md:pt-48 pb-20 px-4 bg-black">
+      <KPISplash />
 
       <div className="absolute inset-0 bg-black pointer-events-none">
         <div className="float-left absolute top-10 left-10 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
@@ -47,10 +49,14 @@ export default function AdvancedHero() {
 
       {/* Content - Interactive */}
       <div className="relative z-20 text-center max-w-5xl w-full mx-auto">
-        <h1 className="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight">
-          {'Unleash Your Innovation'.split('').map((char, i) => (
-            <span key={i} className="inline-block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
-              {char}
+        <h1 className="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 leading-tight flex flex-wrap justify-center gap-x-4">
+          {'Unleash Your Innovation'.split(' ').map((word, i) => (
+            <span key={i} className="inline-block whitespace-nowrap">
+              {word.split('').map((char, j) => (
+                <span key={j} className="hero-char inline-block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+                  {char}
+                </span>
+              ))}
             </span>
           ))}
         </h1>

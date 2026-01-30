@@ -1,52 +1,57 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Twitter, Linkedin, Globe, Mic } from 'lucide-react';
+import BackgroundEffects from './BackgroundEffects';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function TeamSection() {
   const sectionRef = useRef(null);
 
-  const team = [
+  const speakers = [
     {
-      name: 'Dr. Vikram Singh',
-      role: 'Director',
-      specialty: 'Innovation & Strategy',
-      emoji: '👨‍💼'
+      name: 'Dr. Ayesha Malik',
+      role: 'Chief AI Scientist, Google DeepMind',
+      topic: 'The Future of AGI & Ethics',
+      bio: 'Leading global research on safe Artificial General Intelligence.',
+      emoji: '🧠'
     },
     {
-      name: 'Isha Verma',
-      role: 'Lead - Programs',
-      specialty: 'Hackathons & Mentorship',
-      emoji: '👩‍💻'
+      name: 'Rajiv Mehta',
+      role: 'Founder, Polygon',
+      topic: 'Scaling Web3 for Billions',
+      bio: 'Pioneer in Ethereum scaling solutions and decentralized infra.',
+      emoji: '⛓️'
     },
     {
-      name: 'Arjun Patel',
-      role: 'Lead - Operations',
-      specialty: 'Project Management',
-      emoji: '📊'
+      name: 'Sarah Connor',
+      role: 'Cybersecurity Expert',
+      topic: 'Zero Trust Architecture',
+      bio: 'Defending critical infrastructure against next-gen cyber threats.',
+      emoji: '🛡️'
     },
     {
-      name: 'Neha Sharma',
-      role: 'Lead - Community',
-      specialty: 'Networking & Engagement',
-      emoji: '🤝'
+      name: 'David Chen',
+      role: 'Hardware Architect, NVIDIA',
+      topic: 'Next-Gen IoT Computing',
+      bio: 'Architecting the chips that power the edge of the internet.',
+      emoji: '💻'
     }
   ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.team-member', {
+      gsap.from('.speaker-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 95%',
-          end: 'top 20%',
-          scrub: 1.5,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
           markers: false
         },
         opacity: 0,
-        scale: 0.8,
+        y: 60,
         stagger: 0.15,
         duration: 2,
         ease: 'power2.inOut'
@@ -57,33 +62,56 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-black">
-      <div className="max-w-6xl mx-auto">
+    <section ref={sectionRef} className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+      <BackgroundEffects />
+      <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-4xl sm:text-5xl font-black mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent text-center">
-          Meet Our Visionaries
+          Keynote Speakers
         </h2>
         <p className="text-gray-400 text-lg text-center mb-16 max-w-2xl mx-auto leading-relaxed">
-          Dedicated leaders driving innovation, mentoring talents, and building ecosystems where ideas thrive
+          Learn from the pioneers shaping the future of technology
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {team.map((member, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {speakers.map((speaker, i) => (
             <div
               key={i}
-              className="team-member group relative"
+              className="speaker-card group relative h-full"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-              <div className="relative p-6 bg-gradient-to-br from-gray-900 to-black border border-purple-500/20 rounded-xl hover:border-purple-500/50 transition-all duration-300 text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-4 shadow-lg shadow-purple-500/50 group-hover:shadow-purple-500/70 transition-all">
-                  {member.emoji}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              
+              <div className="relative h-full flex flex-col p-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 hover:border-blue-500/50 rounded-2xl transition-all duration-300">
+                
+                {/* Header: Emoji/Image & Links */}
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-3xl border border-blue-500/30">
+                    {speaker.emoji}
+                  </div>
+                  <div className="flex gap-2">
+                    <button className="p-2 text-gray-500 hover:text-white hover:bg-white/10 rounded-lg transition-colors"><Linkedin size={18} /></button>
+                    <button className="p-2 text-gray-500 hover:text-white hover:bg-white/10 rounded-lg transition-colors"><Twitter size={18} /></button>
+                  </div>
                 </div>
-                <h3 className="font-bold text-lg text-white mb-1">{member.name}</h3>
-                <p className="text-blue-400 text-sm font-semibold mb-2">{member.role}</p>
-                <p className="text-gray-400 text-xs mb-4">{member.specialty}</p>
-                <div className="flex justify-center gap-3">
-                  <button className="w-8 h-8 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"><Mail size={16} /></button>
-                  <button className="w-8 h-8 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"><Linkedin size={16} /></button>
+
+                {/* Content */}
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold text-white mb-2">{speaker.name}</h3>
+                  <div className="text-blue-400 text-sm font-semibold mb-4">{speaker.role}</div>
+                  
+                  <div className="p-4 bg-white/5 rounded-xl border border-white/10 mb-4 group-hover:bg-white/10 transition-colors">
+                    <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">
+                      <Mic size={12} /> Speaking On
+                    </div>
+                    <div className="text-gray-200 text-sm font-medium">
+                      "{speaker.topic}"
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {speaker.bio}
+                  </p>
                 </div>
+
               </div>
             </div>
           ))}

@@ -2,20 +2,22 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TimelineItem from './Timline';
+import BackgroundEffects from './BackgroundEffects';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Schedule() {
   const timelineRef = useRef(null);
   const timeline = [
-    { time: '9:00 AM', event: 'Registration & Breakfast', location: 'Main Hall' },
-    { time: '10:00 AM', event: 'Opening Ceremony', location: 'Auditorium' },
-    { time: '11:00 AM', event: 'Keynote Speech', location: 'Auditorium' },
-    { time: '12:00 PM', event: 'Track Selection', location: 'All Halls' },
-    { time: '1:00 PM', event: 'Lunch Break', location: 'Cafeteria' },
-    { time: '2:00 PM', event: 'Competition Begins', location: 'All Halls' },
-    { time: '6:00 PM', event: 'Dinner & Networking', location: 'Cafeteria' },
-    { time: '9:00 PM', event: 'Final Judging', location: 'All Halls' },
+    { time: 'Day 1 - 09:00 AM', event: 'Check-in & Registration', location: 'Main Reception' },
+    { time: 'Day 1 - 10:30 AM', event: 'Opening Ceremony', location: 'Auditorium' },
+    { time: 'Day 1 - 11:30 AM', event: 'Hacking Begins', location: 'Workspaces' },
+    { time: 'Day 1 - 04:00 PM', event: 'Mentoring Session I', location: 'Workspaces' },
+    { time: 'Day 1 - 08:00 PM', event: 'Dinner & Networking', location: 'Cafeteria' },
+    { time: 'Day 2 - 08:00 AM', event: 'Breakfast', location: 'Cafeteria' },
+    { time: 'Day 2 - 11:30 AM', event: 'Coding Ends & Submission', location: 'Online Portal' },
+    { time: 'Day 2 - 02:00 PM', event: 'Final Pitches & Judging', location: 'Auditorium' },
+    { time: 'Day 2 - 05:00 PM', event: 'Prize Distribution', location: 'Auditorium' },
   ];
 
   useEffect(() => {
@@ -23,9 +25,9 @@ export default function Schedule() {
       gsap.from('.timeline-item', {
         scrollTrigger: { 
           trigger: timelineRef.current, 
-          start: 'top 95%',
-          end: 'top 20%',
-          scrub: 1.5,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
           markers: false
         },
         duration: 2,
@@ -39,8 +41,9 @@ export default function Schedule() {
   }, []);
 
   return (
-    <section ref={timelineRef} id="schedule" className="w-full py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black">
-      <div className="max-w-5xl mx-auto">
+    <section ref={timelineRef} id="schedule" className="w-full py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+      <BackgroundEffects />
+      <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-4xl sm:text-5xl font-black mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
             Event Schedule

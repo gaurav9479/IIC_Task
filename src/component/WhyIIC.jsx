@@ -13,14 +13,13 @@ export default function WhyIIC() {
       gsap.from('.why-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 95%',
-          end: 'top 30%',
-          scrub: 1.5,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
           markers: false
         },
         duration: 2,
-        opacity: 0,
-        y: 80,
+        y: 40,
         stagger: 0.2,
         ease: 'power2.inOut'
       });
@@ -34,8 +33,7 @@ export default function WhyIIC() {
           markers: false
         },
         duration: 2,
-        opacity: 0,
-        x: -100,
+        x: -50,
         ease: 'power2.inOut'
       });
     }, sectionRef);

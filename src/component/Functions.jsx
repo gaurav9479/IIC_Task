@@ -13,14 +13,13 @@ export default function Functions() {
       gsap.from('.function-item', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 95%',
-          end: 'top 25%',
-          scrub: 1.5,
+          start: 'top bottom-=100',
+          end: 'bottom top',
+          toggleActions: 'play none none none',
           markers: false
         },
         duration: 2,
-        opacity: 0,
-        x: (i) => (i % 2 === 0 ? -100 : 100),
+        x: (i) => (i % 2 === 0 ? -50 : 50),
         stagger: 0.15,
         ease: 'power2.inOut'
       });
@@ -49,6 +48,36 @@ export default function Functions() {
     'Organize hackathons, idea competitions and mini-challenges'
   ];
 
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    gsap.to(card, {
+      duration: 0.5,
+      rotateX: rotateX,
+      rotateY: rotateY,
+      scale: 1.05,
+      transformPerspective: 1000,
+      ease: 'power1.out'
+    });
+  };
+
+  const handleMouseLeave = (e) => {
+    gsap.to(e.currentTarget, {
+      duration: 0.5,
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      ease: 'power1.out'
+    });
+  };
+
   return (
     <section ref={sectionRef} className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="max-w-4xl mx-auto">
@@ -63,11 +92,13 @@ export default function Functions() {
           {functions.map((func, i) => (
             <div
               key={i}
-              className="function-item group relative bg-gradient-to-br from-gray-900/50 to-black border border-cyan-500/20 hover:border-cyan-500/50 rounded-xl p-6 sm:p-8 transition-all"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              className="function-item interactive group relative bg-gradient-to-br from-gray-900/50 to-black border border-cyan-500/20 hover:border-cyan-500/50 rounded-xl p-6 sm:p-8 transition-all"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity blur-xl"></div>
               
-              <div className="relative z-10 flex gap-4 sm:gap-6 items-start">
+              <div className="relative z-10 flex gap-4 sm:gap-6 items-start pointer-events-none">
                 <div className="function-number flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-cyan-500/20 rounded-full flex items-center justify-center">
                   <CheckCircle className="text-cyan-400" size={24} />
                 </div>
