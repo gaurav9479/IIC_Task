@@ -10,6 +10,7 @@ import GlitchSection from './component/Glitch';
 import FlipCardSection from './component/FlipCard';
 import Functions from './component/Functions';
 import StatsShowcase from './component/StatsShowcase';
+import KPIOverlapSection from './component/KPIOverlapSection';
 import Opportunities from './component/Opportunities';
 import About from './component/About';
 import InnovationShowcase from './component/InnovationShowcase';
@@ -38,6 +39,7 @@ export default function App() {
           <FlipCardSection />
           <Functions />
           <StatsShowcase />
+          <KPIOverlapSection />
           <Opportunities />
           <About />
           <InnovationShowcase />
